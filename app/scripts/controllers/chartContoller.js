@@ -7,8 +7,17 @@
  * Controller of the sbAdminApp
  */
 angular.module('sbAdminApp')
-  .controller('ChartCtrl', ['$scope', '$timeout', function ($scope, $timeout) {
-    $scope.line = {
+  .controller('ChartCtrl', ['$scope', '$timeout','esFactory', function ($scope, $timeout,esFactory) {
+    
+	
+	var test=function(){
+		return esFactory({
+        host: 'localhost:9200'
+      });
+	}
+	
+	test();
+	$scope.line = {
 	    labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July'],
 	    series: ['Series A', 'Series B'],
 	    data: [
