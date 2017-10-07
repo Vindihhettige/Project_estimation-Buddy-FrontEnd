@@ -121,7 +121,9 @@ angular
             }),
             $ocLazyLoad.load({
                 name:'sbAdminApp',
-                files:['scripts/controllers/chartContoller.js']
+                files:['scripts/controllers/chartContoller.js',
+				'scripts/services/esConnection.js'
+				]
             })
           }
         }

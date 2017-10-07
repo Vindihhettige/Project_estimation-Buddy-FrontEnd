@@ -1,20 +1,75 @@
 <div class="row">
     <div class="col-lg-12">
-        <h1 class="page-header">Charts</h1>
+        <h1 class="page-header">Project Estimation Comparison</h1>
     </div>
     <!-- /.col-lg-12 -->
 </div>
-<div class="row">
-    <div class="col-lg-6 col-sm-12" id="line-chart" ng-controller="ChartCtrl">
-        <div class="panel panel-default">
-            <div class="panel-heading">Line Chart</div>
-            <div class="panel-body">
-                <canvas id="line" class="chart chart-line chart-xl" data="line.data" labels="line.labels" legend="true"
-                click="line.onClick" series="line.series"></canvas>
+<div class="row" ng-controller="ChartCtrl">
+    <div class="col-lg-3 col-sm-12" id="tech-select" >
+        <div class="input-group">
+            <label>Technology</label>
+            <div class="form-group">
+                <div class="checkbox">
+                    <label ng-repeat="tech in technologies">
+                        <input ng-model="tech.isSelected" type="checkbox"
+                        ng-change="collectTech(tech);"
+                        applyicheckmain="tech.isSelected">{{tech.title}}
+                    </label>
+                </div>
             </div>
+            
         </div>
     </div>
-    <div class="col-lg-6 col-sm-12" id="bar-chart" ng-controller="ChartCtrl">
+    <div class="col-lg-3 col-sm-12" id="tech-select" >
+        <div class="form-group">
+            <label>Sections</label>
+            <select class="form-control"
+            ng-model="selectedSection"
+            ng-options="sec as sec.name for sec in sections[0].section"
+            ng-change="selecetSection()">
+            <option value="" selected>--Select Section--</option>
+        </select>
+    </div>
+</div>
+<div class="col-lg-3 col-sm-12" id="tech-select" >
+    <div class="form-group">
+            <label>Features</label>
+            <select class="form-control"
+            ng-model="selectedFeature"
+            ng-options="feature.name as feature.name for feature in selecetedFeatures"
+            ng-change="collectFeatures(feature)">
+            <option value="" selected>--Select Feature--</option>
+        </select>
+    </div>
+    <!--<div class="input-group">
+        <label>Features</label>
+        <div class="form-group">
+            <div class="checkbox">
+                <label ng-repeat="feature in features">
+                    <input ng-model="feature.isSelected" type="checkbox"
+                    ng-change="collectFeatures(feature);"
+                    applyicheckmain="feature.isSelected">{{feature.title}}
+                </label>
+            </div>
+        </div>
+
+    </div>-->
+</div>
+<div class="col-lg-3 col-sm-12" id="search">
+    <label>Search</label>
+    <div class="input-group custom-search-form">
+        <span class="input-group-btn">
+            <button class="btn btn-default" type="button" ng-click="startSearch();" >
+                <i class="fa fa-search"></i>
+            </button>
+        </span>
+    </div>
+
+</div>
+</div>
+<br/>
+<div class="row">
+    <div class="col-lg-12 col-sm-12" id="bar-chart" ng-controller="ChartCtrl">
         <div class="panel panel-default">
             <div class="panel-heading">Bar Chart</div>
             <div class="panel-body">
@@ -23,47 +78,3 @@
             </div>
         </div>
     </div>
-</div>
-<div class="row">
-    <div class="col-lg-6 col-sm-12" id="doughnut-chart" ng-controller="ChartCtrl">
-        <div class="panel panel-default">
-            <div class="panel-heading">Doughnut Chart</div>
-            <div class="panel-body">
-            <canvas id="doughnut" class="chart chart-doughnut chart-xs" data="donut.data" labels="donut.labels" legend="false"></canvas>
-            </div>
-        </div>
-    </div>
-    <div class="col-lg-6 col-sm-12" id="radar-chart" ng-controller="ChartCtrl">
-        <div class="panel panel-default">
-            <div class="panel-heading">Radar Chart</div>
-            <div class="panel-body">
-                <canvas id="area" class="chart chart-radar" data="radar.data" labels="radar.labels" click="onClick"></canvas>
-            </div>
-        </div>
-    </div>
-    <div class="col-lg-6 col-sm-12" id="pie-chart" ng-controller="ChartCtrl">
-        <div class="panel panel-default">
-            <div class="panel-heading">Pie Chart</div>
-            <div class="panel-body">
-                <canvas id="pie" class="chart chart-pie chart-xs" data="pie.data" labels="pie.labels"></canvas>
-            </div>
-        </div>
-    </div>
-    <div class="col-lg-6 col-sm-12" id="polar area-chart" ng-controller="ChartCtrl">
-      <div class="panel panel-default">
-        <div class="panel-heading">Polar Area Chart</div>
-        <div class="panel-body">
-          <canvas id="polar" class="chart chart-polar-area" data="polar.data" labels="polar.labels"></canvas>
-        </div>
-      </div>
-    </div>
-    <div class="col-lg-6 col-sm-12" id="base-chart" ng-controller="ChartCtrl">
-        <div class="panel panel-default">
-            <div class="panel-heading">Dynamic Chart</div>
-            <div class="panel-body">
-            <canvas id="base" class="chart chart-base" chart-type="dynamic.type" data="dynamic.data" labels="dynamic.labels" legend="true"></canvas>
-            </div>
-        </div>
-        <button type="button" class="btn btn-primary pull-right" ng-click="dynamic.toggle()">Toggle</button>
-    </div>
-</div>
